@@ -8,7 +8,7 @@
       <link href="/my_blog/2024/12/28/test/"/>
       <url>/my_blog/2024/12/28/test/</url>
       
-        <content type="html"><![CDATA[<h1 id="正文部分"><a href="#正文部分" class="headerlink" title="正文部分"></a>正文部分</h1><p>你好！</p><h1 id="测试！aaa"><a href="#测试！aaa" class="headerlink" title="测试！aaa"></a>测试！aaa</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="正文部分"><a href="#正文部分" class="headerlink" title="正文部分"></a>正文部分</h1><p>你好！</p><h1 id="测试！aaa"><a href="#测试！aaa" class="headerlink" title="测试！aaa"></a>测试！aaa</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello World!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
       
       
