@@ -10,7 +10,7 @@ keywords:
   - 我的
   - 你好
 author: Twilight
-language: zh
+language: zh-CN
 timezone: 'Asia/Shanghai'
 
 # URL
@@ -99,11 +99,11 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: hexo-theme-Claudia
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy: 
   type: git
-  repo: https://github.com/twilight0702/my_blog
-  branch: main
+  repo: git@github.com:twilight0702/my_blog.git
+  branch: gh-pages
