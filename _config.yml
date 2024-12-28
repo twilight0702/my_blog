@@ -6,7 +6,9 @@
 title: 猫窝
 subtitle: '老大欢迎来到我的小窝喵~'
 description: '这里住着一只奇怪的猫'
-keywords:我的,你好
+keywords:
+  - 我的
+  - 你好
 author: Twilight
 language: zh
 timezone: 'Asia/Shanghai'
