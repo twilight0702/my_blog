@@ -27,8 +27,12 @@
 <meta property="og:description" content="前景提要（免责声明） 本帖旨在记录自己开发制作过程中使用的技术，防止后续遗忘，不保证完全正确但我实践下来是可行的（） 使用的是unity官方的VR系统进行基础开发，计划后续接入HTCVive设备，VR设备不同不保证能够完全兼容 使用unity版本为2022.3.53f1c1，为LFS长期支持版本，经测试2023版本也可以使用，UI布局相同，其余未知  初始准备部分 这部分包括新建项目和相关包导入">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://twilight0702.github.io/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image.png">
+<meta property="og:image" content="https://twilight0702.github.io/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image1.png">
+<meta property="og:image" content="https://twilight0702.github.io/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image2.png">
+<meta property="og:image" content="https://twilight0702.github.io/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image3.png">
+<meta property="og:image" content="https://twilight0702.github.io/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image4.png">
 <meta property="article:published_time" content="2025-02-13T10:41:51.631Z">
-<meta property="article:modified_time" content="2025-02-13T15:41:24.916Z">
+<meta property="article:modified_time" content="2025-02-13T15:46:15.150Z">
 <meta property="article:author" content="Twilight">
 <meta property="article:tag" content="UnityVR">
 <meta name="twitter:card" content="summary_large_image">
@@ -236,7 +240,7 @@
         
         
         
-          26 分钟
+          25 分钟
         
       </span>
     
@@ -321,15 +325,15 @@
 <li>把该脚本拖拽到按钮上（理论上可以挂载到任意一个游戏物体，这里演示就放button上）</li>
 <li>点击Button，找到Button组件，在On Click（）中新建一个</li>
 </ol>
-<p>![image1.png](&#x2F;img&#x2F;UnityVR开发&#x2F;image 1.png)</p>
+<p><img src="/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image1.png" srcset="/my_blog/img/loading.gif" lazyload alt="image1.png"></p>
 <ol start="4">
 <li>拖入脚本</li>
 </ol>
-<p>![image2.png](&#x2F;img&#x2F;UnityVR开发&#x2F;image 2.png)</p>
+<p><img src="/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image2.png" srcset="/my_blog/img/loading.gif" lazyload alt="image2.png"></p>
 <ol start="5">
 <li>选择刚刚写好的事件</li>
 </ol>
-<p>![image3.png](&#x2F;img&#x2F;UnityVR开发&#x2F;image 3.png)</p>
+<p><img src="/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image3.png" srcset="/my_blog/img/loading.gif" lazyload alt="image3.png"></p>
 <p>现在再运行项目，点击按钮就可以看到控制台输出”按钮被点击”</p>
 <h2 id="场景跳转"><a href="#场景跳转" class="headerlink" title="场景跳转"></a>场景跳转</h2><h3 id="同步加载"><a href="#同步加载" class="headerlink" title="同步加载"></a>同步加载</h3><p>适合小场景，代码简单，可能卡顿</p>
 <p>如果是要实现点击按钮跳转场景，按前面部分新建好按钮，</p>
@@ -432,7 +436,7 @@
 <li>unity中的ui文字用的TMP，导入外部文字（.ttf格式等）的时候需要转换成支持的格式，右键字体文件→Create→TextMeshPro→Font Asset进行创建</li>
 <li>如果是中文字体，记得点击生成的文字文件，勾选这个，否则会出现显示文字为方框的问题</li>
 </ul>
-<p>![image4.png](&#x2F;img&#x2F;UnityVR开发&#x2F;image 4.png)</p>
+<p><img src="/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image4.png" srcset="/my_blog/img/loading.gif" lazyload alt="image4.png"></p>
 <ul>
 <li>中文字体包可以到你电脑上的C:\Windows\Fonts中找你要的</li>
 </ul>
