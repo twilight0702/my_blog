@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_blog/img/fluid.png">
+  <link rel="icon" href="/my_blog/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Twilight">
+  <meta name="keywords" content="我的,你好">
+  
+    <meta name="description" content="前景提要（免责声明） 本帖旨在记录自己开发制作过程中使用的技术，防止后续遗忘，不保证完全正确但我实践下来是可行的（） 使用的是unity官方的VR系统进行基础开发，计划后续接入HTCVive设备，VR设备不同不保证能够完全兼容 使用unity版本为2022.3.53f1c1，为LFS长期支持版本，经测试2023版本也可以使用，UI布局相同，其余未知  初始准备部分 这部分包括新建项目和相关包导入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UnityVR开发">
+<meta property="og:url" content="https://twilight0702.github.io/my_blog/2025/02/13/UnityVR%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="猫窝">
+<meta property="og:description" content="前景提要（免责声明） 本帖旨在记录自己开发制作过程中使用的技术，防止后续遗忘，不保证完全正确但我实践下来是可行的（） 使用的是unity官方的VR系统进行基础开发，计划后续接入HTCVive设备，VR设备不同不保证能够完全兼容 使用unity版本为2022.3.53f1c1，为LFS长期支持版本，经测试2023版本也可以使用，UI布局相同，其余未知  初始准备部分 这部分包括新建项目和相关包导入">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="attachment:7c2a578a-2a9d-4c69-8d7b-96f1a1d3e60b:image.png">
+<meta property="og:image" content="attachment:0d10f1fa-78c1-4024-92e4-09d174dd8500:image.png">
+<meta property="og:image" content="attachment:1801ef3d-091f-4a88-ade0-3feee474c697:image.png">
+<meta property="og:image" content="attachment:39409e96-c5b7-4223-a5b4-93363b448ddb:image.png">
+<meta property="og:image" content="attachment:d4a4cbbe-2cbd-41f9-9020-0284e6283a4a:image.png">
+<meta property="article:published_time" content="2025-02-13T10:41:51.631Z">
+<meta property="article:modified_time" content="2025-02-13T10:42:31.753Z">
+<meta property="article:author" content="Twilight">
+<meta property="article:tag" content="Unity">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="attachment:7c2a578a-2a9d-4c69-8d7b-96f1a1d3e60b:image.png">
+  
+  
+  
+  <title>UnityVR开发 - 猫窝</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/my_blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/my_blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/my_blog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"twilight0702.github.io","root":"/my_blog/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/my_blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/my_blog/js/utils.js" ></script>
+  <script  src="/my_blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/my_blog/">
+      <strong>猫窝</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/my_blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="UnityVR开发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-13 18:41" pubdate>
+          2025年2月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">UnityVR开发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="前景提要（免责声明）"><a href="#前景提要（免责声明）" class="headerlink" title="前景提要（免责声明）"></a>前景提要（免责声明）</h1><ul>
+<li>本帖旨在记录自己开发制作过程中使用的技术，防止后续遗忘，不保证完全正确但我实践下来是可行的（）</li>
+<li>使用的是unity官方的VR系统进行基础开发，计划后续接入HTCVive设备，VR设备不同不保证能够完全兼容</li>
+<li>使用unity版本为2022.3.53f1c1，为LFS长期支持版本，经测试2023版本也可以使用，UI布局相同，其余未知</li>
+</ul>
+<h1 id="初始准备部分"><a href="#初始准备部分" class="headerlink" title="初始准备部分"></a>初始准备部分</h1><blockquote>
+<p>这部分包括新建项目和相关包导入</p>
+</blockquote>
+<ol>
+<li>新建unity3D空项目，使用的是最普通的3d项目</li>
+<li>左上角点击Edit→Project Settings→XR Plug-in Management→Install XR Plugin Management，安装需要的包</li>
+<li>同页面勾选Open XR，等待安装相关包（会提示需要重启项目，点确定就行）</li>
+<li>继续打开同页面，勾选Open XR（会有警告），然后点击子页面Project Validation，点击Fix All。接着点击子页面中的OpenXR页面，在Enabled Interaction Profiles中添加你需要支持的VR设备（我选择无脑全部加入），到这一步警告应该就消失了</li>
+<li>打开Package Manager（左上角Windows→Package Manager）,在Unity Registry中搜索XR Interaction Toolkit这个包，点击Install</li>
+<li>安装后，同页面点击Samples，找到Starter Assets，点击Import</li>
+<li>接下来导入玩家头显和手柄。Hierarchy框中（就是左侧放所有游戏物体的部分）点击鼠标右键→XR→XR Origin(VR)，然后删除默认摄像机（Main Camera游戏物体）（因为头显自带一个摄像机）</li>
+<li>点击XR Origin(VR)，找到子物体Left Controller，在它的XR Controller组件的右上角，有一个按钮（如图），点击后选择XRI Default Left Controller；找到子物体Right Controller，在它的XR Controller组件的右上角，有一个按钮（如图），点击后选择XRI Default Right Controller；</li>
+</ol>
+<p><img src="attachment:7c2a578a-2a9d-4c69-8d7b-96f1a1d3e60b:image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="模拟设备输入"><a href="#模拟设备输入" class="headerlink" title="模拟设备输入"></a>模拟设备输入</h2><p>开发过程中可能没有VR设备，就需要用键鼠模拟手柄和头显的输入输出。具体操作如下：</p>
+<ol>
+<li>打开Package Manager（左上角Windows→Package Manager）,搜索XR Interaction Toolkit，点击Samples，找到XR Device Simulator，点击Import</li>
+<li>左上角点击Edit→Project Settings→XR Plug-in Management→XR Interaction Toolkit，勾选Use XR  Device Simulator In Scenes（后续不想要使用模拟的话把这个勾选去掉就行）</li>
+</ol>
+<p>到这一步就可以点击运行了，如果能够用键鼠模拟手柄的输入和移动手柄、头显，那么基础构建完成！（提示：点击Tab在头显、左手柄、右手柄之间切换）</p>
+<h1 id="UI交互"><a href="#UI交互" class="headerlink" title="UI交互"></a>UI交互</h1><p>使用的方案是射线交互，实现用户登录、关卡选择和页面跳转（未来可能考虑眼球追踪做视线交互）</p>
+<h2 id="按钮交互（射线）"><a href="#按钮交互（射线）" class="headerlink" title="按钮交互（射线）"></a>按钮交互（射线）</h2><ol>
+<li>Hierarchy中鼠标右键→UI→Canvas，新建一个Canvas（同时会新建一个EventSystem），点击EventSystem，删除带着的Standalone Input Module（右上角三个点→Remove Component），然后添加组件XR UI Input Module（如果为了防止后续鼠标也可以和ui组件交互，可以把Input Devices中的Enable Mouse Input勾选去掉）</li>
+<li>点击Canvas，在带着的Canvas组件下找到Render Mode，修改为World Space（默认是Screen Space），把EventCamera设置为XR Origin(XR Rig)的Mian Camera（把对应物体拖到这个字段里面）。在Transform组件中把位置设置为（0，0，0），缩放（Scale）设置为0.01（三个轴同步）。在Canvas上添加 <code>Tracked Device Graphic Raycaster</code> 组件</li>
+<li>右键Canvas→UI→Image，调整位置和大小到你可以在Game界面中看到它（Image也可以不创建，这里是为了方便定位，作为后续放置ui组件的“底板”）</li>
+<li>右键Image→UI→Button - TextMeshPro，新建一个button（没有导入TMP包的话会提示需要导入，按提示点就行），自行调整大小和位置</li>
+</ol>
+<hr>
+<p>可以选择给按钮绑定交互事件来测试</p>
+<ol>
+<li>新建C#脚本（这里举个例子）</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span>()</span><br>    &#123;<br>        Debug.Log(<span class="hljs-string">&quot;按钮被点击&quot;</span>);<span class="hljs-comment">//在控制台输出日志信息</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>把该脚本拖拽到按钮上（理论上可以挂载到任意一个游戏物体，这里演示就放button上）</li>
+<li>点击Button，找到Button组件，在On Click（）中新建一个</li>
+</ol>
+<p><img src="attachment:0d10f1fa-78c1-4024-92e4-09d174dd8500:image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
+<ol>
+<li>拖入脚本</li>
+</ol>
+<p><img src="attachment:1801ef3d-091f-4a88-ade0-3feee474c697:image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
+<ol>
+<li>选择刚刚写好的事件</li>
+</ol>
+<p><img src="attachment:39409e96-c5b7-4223-a5b4-93363b448ddb:image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
+<p>现在再运行项目，点击按钮就可以看到控制台输出”按钮被点击”</p>
+<h2 id="场景跳转"><a href="#场景跳转" class="headerlink" title="场景跳转"></a>场景跳转</h2><h3 id="同步加载"><a href="#同步加载" class="headerlink" title="同步加载"></a>同步加载</h3><p>适合小场景，代码简单，可能卡顿</p>
+<p>如果是要实现点击按钮跳转场景，按前面部分新建好按钮，</p>
+<ol>
+<li><p>左上角File→Build Settings，点击Add Open Scene，对于切换前后的两个场景都要做这个操作，把场景放入Scene In Build</p>
+</li>
+<li><p>记住场景的 <code>Index</code> 或 <code>名称</code></p>
+</li>
+<li><p>编写脚本，使用 <code>SceneManager.LoadScene</code> 进行场景切换</p>
+ <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.SceneManagement;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SceneLoader</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LoadScene</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> sceneName</span>)</span><br>    &#123;<br>        SceneManager.LoadScene(sceneName); <span class="hljs-comment">// 通过场景名字加载</span><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LoadScene</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> sceneIndex</span>)</span><br>    &#123;<br>        SceneManager.LoadScene(sceneIndex); <span class="hljs-comment">// 通过场景索引加载</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>将此脚本挂载到前面建好的button上，然后在 <code>Button</code> 的 <code>OnClick()</code> 事件中，调用 <code>LoadScene()</code> ，填写要跳转的场景名&#x2F;索引即可</p>
+</li>
+</ol>
+<h3 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h3><p>场景过大放卡顿用</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.SceneManagement;<br><span class="hljs-keyword">using</span> System.Collections;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">AsyncSceneLoader</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LoadSceneAsync</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> sceneName</span>)</span><br>    &#123;<br>        StartCoroutine(LoadSceneCoroutine(sceneName));<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> IEnumerator <span class="hljs-title">LoadSceneCoroutine</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> sceneName</span>)</span><br>    &#123;<br>        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);<br>        asyncLoad.allowSceneActivation = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 先不自动进入新场景</span><br><br>        <span class="hljs-comment">// 可以在这里添加一个加载进度条</span><br>        <span class="hljs-keyword">while</span> (asyncLoad.progress &lt; <span class="hljs-number">0.9f</span>)<br>        &#123;<br>            Debug.Log(<span class="hljs-string">&quot;加载进度: &quot;</span> + asyncLoad.progress);<br>            <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 加载完成后，手动激活场景</span><br>        asyncLoad.allowSceneActivation = <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="文本输入"><a href="#文本输入" class="headerlink" title="文本输入"></a>文本输入</h2><p>使用虚拟键盘实现输入，虚拟键盘来自<a target="_blank" rel="noopener" href="https://gitcode.com/open-source-toolkit/1dc40">https://gitcode.com/open-source-toolkit/1dc40</a></p>
+<ol>
+<li><p>导入虚拟键盘</p>
+<p> 由于本人不用GitCode，懒得配置令牌，选择下载压缩包再解压导入（），有配置过令牌的可以直接在untiy的Package Manager中用gitURL导入包。导入整个文件夹，只需要保留UIKeyboard&#x2F;UIKeyboard.unitypackage即可，其余删除。双击UIKeyboard.unitypackage，去掉TextMeshPro（前面导入过了），（示例场景看你需求，要不要都可以），然后点Import</p>
+</li>
+<li><p>把导入的KeyBoard.Prefab放进场景中（放在Canvas下面，作为Canvas的子物体），调整缩放和位置让玩家能够看见交互得到</p>
+</li>
+<li><p>这个键盘的输入存储在它的Keyboard Controller组件的公共字段Typed String中，可以通过以下代码获取</p>
+</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> KeyboardController Keyborad;<span class="hljs-comment">//把Keyboard物体拖入这个字段</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getString</span>()</span><br>&#123;<br>	<span class="hljs-built_in">string</span> text=KeyBoard.TypedString;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p>放置输入框</p>
+<p> 右键Image→UI→Input Field - TextMeshPro，调整位置，编写和挂载脚本监听点击事件和实时替换输入框中的文本（比较粗暴的方式）</p>
+<p> （下放我用的代码，我有两个输入框，另加了输入框高亮）</p>
+ <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">VRKeyboardManager</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> KeyboardController keyboardController;  <span class="hljs-comment">// 虚拟键盘控制器</span><br>    <span class="hljs-keyword">public</span> TMP_InputField tmpInputField1;  <span class="hljs-comment">// 第一个 TMP 输入框</span><br>    <span class="hljs-keyword">public</span> TMP_InputField tmpInputField2;  <span class="hljs-comment">// 第二个 TMP 输入框</span><br><br>    <span class="hljs-keyword">private</span> TMP_InputField activeTMPInputField = <span class="hljs-literal">null</span>;  <span class="hljs-comment">// 记录当前选中的 TMP 输入框</span><br>    <span class="hljs-keyword">private</span> Color defaultBGColor = Color.white;  <span class="hljs-comment">// 默认背景颜色</span><br>    <span class="hljs-keyword">private</span> Color selectedBGColor = <span class="hljs-keyword">new</span> Color(<span class="hljs-number">149f</span> / <span class="hljs-number">255f</span>, <span class="hljs-number">203f</span> / <span class="hljs-number">255f</span>, <span class="hljs-number">211f</span> / <span class="hljs-number">255f</span>, <span class="hljs-number">1f</span>); <span class="hljs-comment">// 选中时的淡蓝色（RGBA）</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>()</span><br>    &#123;<br>        <span class="hljs-comment">// 监听 TMP_InputField 的选择事件</span><br>        tmpInputField1.onSelect.AddListener(<span class="hljs-built_in">delegate</span> &#123; SetActiveTMPInputField(tmpInputField1); &#125;);<br>        tmpInputField2.onSelect.AddListener(<span class="hljs-built_in">delegate</span> &#123; SetActiveTMPInputField(tmpInputField2); &#125;);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (activeTMPInputField != <span class="hljs-literal">null</span>)<br>        &#123;<br>            activeTMPInputField.text = keyboardController.typedString;  <span class="hljs-comment">// 让 TMP 输入框内容实时更新</span><br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 当用户选择某个输入框时，激活它，并改变文本颜色</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetActiveTMPInputField</span>(<span class="hljs-params">TMP_InputField tmpInputField</span>)</span><br>    &#123;<br>        <span class="hljs-comment">// 重置所有输入框的颜色</span><br>        ResetInputFieldColors();<br><br>        <span class="hljs-comment">// 设为当前选中的输入框</span><br>        activeTMPInputField = tmpInputField;<br>        keyboardController.typedString = tmpInputField.text; <span class="hljs-comment">// 让键盘的 typedString 同步输入框的内容</span><br><br>        <span class="hljs-comment">// 修改当前选中输入框的背景颜色</span><br>        Image inputFieldImage = activeTMPInputField.GetComponent&lt;Image&gt;();<br>        <span class="hljs-keyword">if</span> (inputFieldImage != <span class="hljs-literal">null</span>)<br>        &#123;<br>            inputFieldImage.color = selectedBGColor;  <span class="hljs-comment">// 选中时背景变蓝</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 重置所有输入框的背景颜色</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ResetInputFieldColors</span>()</span><br>    &#123;<br>        Image img1 = tmpInputField1.GetComponent&lt;Image&gt;();<br>        Image img2 = tmpInputField2.GetComponent&lt;Image&gt;();<br><br>        <span class="hljs-keyword">if</span> (img1 != <span class="hljs-literal">null</span>) img1.color = defaultBGColor; <span class="hljs-comment">// 还原默认白色</span><br>        <span class="hljs-keyword">if</span> (img2 != <span class="hljs-literal">null</span>) img2.color = defaultBGColor;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ul>
+<li>没有使用unity自带的版本控制工具有可能会报错，移除项目中的Version Control包即可</li>
+<li>unity中的ui文字用的TMP，导入外部文字（.ttf格式等）的时候需要转换成支持的格式，右键字体文件→Create→TextMeshPro→Font Asset进行创建</li>
+<li>如果是中文字体，记得点击生成的文字文件，勾选这个，否则会出现显示文字为方框的问题</li>
+</ul>
+<p><img src="attachment:d4a4cbbe-2cbd-41f9-9020-0284e6283a4a:image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>中文字体包可以到你电脑上的C:\Windows\Fonts中找你要的</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/my_blog/tags/Unity/" class="print-no-link">#Unity</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>UnityVR开发</div>
+      <div>https://twilight0702.github.io/my_blog/2025/02/13/UnityVR开发/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Twilight</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年2月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_blog/2025/01/12/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="异常处理">
+                        <span class="hidden-mobile">异常处理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/my_blog/js/events.js" ></script>
+<script  src="/my_blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/my_blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/my_blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/my_blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
