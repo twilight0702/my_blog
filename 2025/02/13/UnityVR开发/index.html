@@ -21,26 +21,22 @@
   
     <meta name="description" content="前景提要（免责声明） 本帖旨在记录自己开发制作过程中使用的技术，防止后续遗忘，不保证完全正确但我实践下来是可行的（） 使用的是unity官方的VR系统进行基础开发，计划后续接入HTCVive设备，VR设备不同不保证能够完全兼容 使用unity版本为2022.3.53f1c1，为LFS长期支持版本，经测试2023版本也可以使用，UI布局相同，其余未知  初始准备部分 这部分包括新建项目和相关包导入">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UnityVR开发">
+<meta property="og:title" content="UnityVR开发教程（也许）">
 <meta property="og:url" content="https://twilight0702.github.io/my_blog/2025/02/13/UnityVR%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="猫窝">
 <meta property="og:description" content="前景提要（免责声明） 本帖旨在记录自己开发制作过程中使用的技术，防止后续遗忘，不保证完全正确但我实践下来是可行的（） 使用的是unity官方的VR系统进行基础开发，计划后续接入HTCVive设备，VR设备不同不保证能够完全兼容 使用unity版本为2022.3.53f1c1，为LFS长期支持版本，经测试2023版本也可以使用，UI布局相同，其余未知  初始准备部分 这部分包括新建项目和相关包导入">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="attachment:7c2a578a-2a9d-4c69-8d7b-96f1a1d3e60b:image.png">
-<meta property="og:image" content="attachment:0d10f1fa-78c1-4024-92e4-09d174dd8500:image.png">
-<meta property="og:image" content="attachment:1801ef3d-091f-4a88-ade0-3feee474c697:image.png">
-<meta property="og:image" content="attachment:39409e96-c5b7-4223-a5b4-93363b448ddb:image.png">
-<meta property="og:image" content="attachment:d4a4cbbe-2cbd-41f9-9020-0284e6283a4a:image.png">
+<meta property="og:image" content="https://twilight0702.github.io/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image.png">
 <meta property="article:published_time" content="2025-02-13T10:41:51.631Z">
-<meta property="article:modified_time" content="2025-02-13T10:42:31.753Z">
+<meta property="article:modified_time" content="2025-02-13T15:41:24.916Z">
 <meta property="article:author" content="Twilight">
-<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="UnityVR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="attachment:7c2a578a-2a9d-4c69-8d7b-96f1a1d3e60b:image.png">
+<meta name="twitter:image" content="https://twilight0702.github.io/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image.png">
   
   
   
-  <title>UnityVR开发 - 猫窝</title>
+  <title>UnityVR开发教程（也许） - 猫窝</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="UnityVR开发"></span>
+            <span id="subtitle" data-typed-text="UnityVR开发教程（也许）"></span>
           
         </div>
 
@@ -229,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          3k 字
         
       </span>
     
@@ -240,7 +236,7 @@
         
         
         
-          17 分钟
+          26 分钟
         
       </span>
     
@@ -277,7 +273,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">UnityVR开发</h1>
+            <h1 id="seo-header">UnityVR开发教程（也许）</h1>
             
             
               <div class="markdown-body">
@@ -300,7 +296,7 @@
 <li>接下来导入玩家头显和手柄。Hierarchy框中（就是左侧放所有游戏物体的部分）点击鼠标右键→XR→XR Origin(VR)，然后删除默认摄像机（Main Camera游戏物体）（因为头显自带一个摄像机）</li>
 <li>点击XR Origin(VR)，找到子物体Left Controller，在它的XR Controller组件的右上角，有一个按钮（如图），点击后选择XRI Default Left Controller；找到子物体Right Controller，在它的XR Controller组件的右上角，有一个按钮（如图），点击后选择XRI Default Right Controller；</li>
 </ol>
-<p><img src="attachment:7c2a578a-2a9d-4c69-8d7b-96f1a1d3e60b:image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="/my_blog/img/UnityVR%E5%BC%80%E5%8F%91/image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
 <h2 id="模拟设备输入"><a href="#模拟设备输入" class="headerlink" title="模拟设备输入"></a>模拟设备输入</h2><p>开发过程中可能没有VR设备，就需要用键鼠模拟手柄和头显的输入输出。具体操作如下：</p>
 <ol>
 <li>打开Package Manager（左上角Windows→Package Manager）,搜索XR Interaction Toolkit，点击Samples，找到XR Device Simulator，点击Import</li>
@@ -315,25 +311,25 @@
 <li>右键Image→UI→Button - TextMeshPro，新建一个button（没有导入TMP包的话会提示需要导入，按提示点就行），自行调整大小和位置</li>
 </ol>
 <hr>
-<p>可以选择给按钮绑定交互事件来测试</p>
+<p>可以给按钮绑定交互事件来测试</p>
 <ol>
 <li>新建C#脚本（这里举个例子）</li>
 </ol>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span>()</span><br>    &#123;<br>        Debug.Log(<span class="hljs-string">&quot;按钮被点击&quot;</span>);<span class="hljs-comment">//在控制台输出日志信息</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<ol>
+<ol start="2">
 <li>把该脚本拖拽到按钮上（理论上可以挂载到任意一个游戏物体，这里演示就放button上）</li>
 <li>点击Button，找到Button组件，在On Click（）中新建一个</li>
 </ol>
-<p><img src="attachment:0d10f1fa-78c1-4024-92e4-09d174dd8500:image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
-<ol>
+<p>![image1.png](&#x2F;img&#x2F;UnityVR开发&#x2F;image 1.png)</p>
+<ol start="4">
 <li>拖入脚本</li>
 </ol>
-<p><img src="attachment:1801ef3d-091f-4a88-ade0-3feee474c697:image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
-<ol>
+<p>![image2.png](&#x2F;img&#x2F;UnityVR开发&#x2F;image 2.png)</p>
+<ol start="5">
 <li>选择刚刚写好的事件</li>
 </ol>
-<p><img src="attachment:39409e96-c5b7-4223-a5b4-93363b448ddb:image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
+<p>![image3.png](&#x2F;img&#x2F;UnityVR开发&#x2F;image 3.png)</p>
 <p>现在再运行项目，点击按钮就可以看到控制台输出”按钮被点击”</p>
 <h2 id="场景跳转"><a href="#场景跳转" class="headerlink" title="场景跳转"></a>场景跳转</h2><h3 id="同步加载"><a href="#同步加载" class="headerlink" title="同步加载"></a>同步加载</h3><p>适合小场景，代码简单，可能卡顿</p>
 <p>如果是要实现点击按钮跳转场景，按前面部分新建好按钮，</p>
@@ -343,18 +339,18 @@
 <li><p>记住场景的 <code>Index</code> 或 <code>名称</code></p>
 </li>
 <li><p>编写脚本，使用 <code>SceneManager.LoadScene</code> 进行场景切换</p>
- <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.SceneManagement;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SceneLoader</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LoadScene</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> sceneName</span>)</span><br>    &#123;<br>        SceneManager.LoadScene(sceneName); <span class="hljs-comment">// 通过场景名字加载</span><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LoadScene</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> sceneIndex</span>)</span><br>    &#123;<br>        SceneManager.LoadScene(sceneIndex); <span class="hljs-comment">// 通过场景索引加载</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.SceneManagement;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SceneLoader</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LoadScene</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> sceneName</span>)</span><br>    &#123;<br>        SceneManager.LoadScene(sceneName); <span class="hljs-comment">// 通过场景名字加载</span><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LoadScene</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> sceneIndex</span>)</span><br>    &#123;<br>        SceneManager.LoadScene(sceneIndex); <span class="hljs-comment">// 通过场景索引加载</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>将此脚本挂载到前面建好的button上，然后在 <code>Button</code> 的 <code>OnClick()</code> 事件中，调用 <code>LoadScene()</code> ，填写要跳转的场景名&#x2F;索引即可</p>
 </li>
 </ol>
-<h3 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h3><p>场景过大放卡顿用</p>
+<h3 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h3><p>场景过大防卡顿用</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> UnityEngine;<br><span class="hljs-keyword">using</span> UnityEngine.SceneManagement;<br><span class="hljs-keyword">using</span> System.Collections;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">AsyncSceneLoader</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LoadSceneAsync</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> sceneName</span>)</span><br>    &#123;<br>        StartCoroutine(LoadSceneCoroutine(sceneName));<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> IEnumerator <span class="hljs-title">LoadSceneCoroutine</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> sceneName</span>)</span><br>    &#123;<br>        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);<br>        asyncLoad.allowSceneActivation = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 先不自动进入新场景</span><br><br>        <span class="hljs-comment">// 可以在这里添加一个加载进度条</span><br>        <span class="hljs-keyword">while</span> (asyncLoad.progress &lt; <span class="hljs-number">0.9f</span>)<br>        &#123;<br>            Debug.Log(<span class="hljs-string">&quot;加载进度: &quot;</span> + asyncLoad.progress);<br>            <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 加载完成后，手动激活场景</span><br>        asyncLoad.allowSceneActivation = <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="文本输入"><a href="#文本输入" class="headerlink" title="文本输入"></a>文本输入</h2><p>使用虚拟键盘实现输入，虚拟键盘来自<a target="_blank" rel="noopener" href="https://gitcode.com/open-source-toolkit/1dc40">https://gitcode.com/open-source-toolkit/1dc40</a></p>
 <ol>
 <li><p>导入虚拟键盘</p>
-<p> 由于本人不用GitCode，懒得配置令牌，选择下载压缩包再解压导入（），有配置过令牌的可以直接在untiy的Package Manager中用gitURL导入包。导入整个文件夹，只需要保留UIKeyboard&#x2F;UIKeyboard.unitypackage即可，其余删除。双击UIKeyboard.unitypackage，去掉TextMeshPro（前面导入过了），（示例场景看你需求，要不要都可以），然后点Import</p>
+<p>由于本人不用GitCode，懒得配置令牌，选择下载压缩包再解压导入（），有配置过令牌的可以直接在untiy的Package Manager中用gitURL导入包。导入整个文件夹，只需要保留UIKeyboard&#x2F;UIKeyboard.unitypackage即可，其余删除。双击UIKeyboard.unitypackage，去掉TextMeshPro（前面导入过了），（示例场景看你需求，要不要都可以），然后点Import</p>
 </li>
 <li><p>把导入的KeyBoard.Prefab放进场景中（放在Canvas下面，作为Canvas的子物体），调整缩放和位置让玩家能够看见交互得到</p>
 </li>
@@ -363,18 +359,80 @@
 </ol>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> KeyboardController Keyborad;<span class="hljs-comment">//把Keyboard物体拖入这个字段</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getString</span>()</span><br>&#123;<br>	<span class="hljs-built_in">string</span> text=KeyBoard.TypedString;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<ol>
+<ol start="4">
 <li><p>放置输入框</p>
-<p> 右键Image→UI→Input Field - TextMeshPro，调整位置，编写和挂载脚本监听点击事件和实时替换输入框中的文本（比较粗暴的方式）</p>
-<p> （下放我用的代码，我有两个输入框，另加了输入框高亮）</p>
- <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">VRKeyboardManager</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> KeyboardController keyboardController;  <span class="hljs-comment">// 虚拟键盘控制器</span><br>    <span class="hljs-keyword">public</span> TMP_InputField tmpInputField1;  <span class="hljs-comment">// 第一个 TMP 输入框</span><br>    <span class="hljs-keyword">public</span> TMP_InputField tmpInputField2;  <span class="hljs-comment">// 第二个 TMP 输入框</span><br><br>    <span class="hljs-keyword">private</span> TMP_InputField activeTMPInputField = <span class="hljs-literal">null</span>;  <span class="hljs-comment">// 记录当前选中的 TMP 输入框</span><br>    <span class="hljs-keyword">private</span> Color defaultBGColor = Color.white;  <span class="hljs-comment">// 默认背景颜色</span><br>    <span class="hljs-keyword">private</span> Color selectedBGColor = <span class="hljs-keyword">new</span> Color(<span class="hljs-number">149f</span> / <span class="hljs-number">255f</span>, <span class="hljs-number">203f</span> / <span class="hljs-number">255f</span>, <span class="hljs-number">211f</span> / <span class="hljs-number">255f</span>, <span class="hljs-number">1f</span>); <span class="hljs-comment">// 选中时的淡蓝色（RGBA）</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>()</span><br>    &#123;<br>        <span class="hljs-comment">// 监听 TMP_InputField 的选择事件</span><br>        tmpInputField1.onSelect.AddListener(<span class="hljs-built_in">delegate</span> &#123; SetActiveTMPInputField(tmpInputField1); &#125;);<br>        tmpInputField2.onSelect.AddListener(<span class="hljs-built_in">delegate</span> &#123; SetActiveTMPInputField(tmpInputField2); &#125;);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (activeTMPInputField != <span class="hljs-literal">null</span>)<br>        &#123;<br>            activeTMPInputField.text = keyboardController.typedString;  <span class="hljs-comment">// 让 TMP 输入框内容实时更新</span><br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 当用户选择某个输入框时，激活它，并改变文本颜色</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetActiveTMPInputField</span>(<span class="hljs-params">TMP_InputField tmpInputField</span>)</span><br>    &#123;<br>        <span class="hljs-comment">// 重置所有输入框的颜色</span><br>        ResetInputFieldColors();<br><br>        <span class="hljs-comment">// 设为当前选中的输入框</span><br>        activeTMPInputField = tmpInputField;<br>        keyboardController.typedString = tmpInputField.text; <span class="hljs-comment">// 让键盘的 typedString 同步输入框的内容</span><br><br>        <span class="hljs-comment">// 修改当前选中输入框的背景颜色</span><br>        Image inputFieldImage = activeTMPInputField.GetComponent&lt;Image&gt;();<br>        <span class="hljs-keyword">if</span> (inputFieldImage != <span class="hljs-literal">null</span>)<br>        &#123;<br>            inputFieldImage.color = selectedBGColor;  <span class="hljs-comment">// 选中时背景变蓝</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 重置所有输入框的背景颜色</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ResetInputFieldColors</span>()</span><br>    &#123;<br>        Image img1 = tmpInputField1.GetComponent&lt;Image&gt;();<br>        Image img2 = tmpInputField2.GetComponent&lt;Image&gt;();<br><br>        <span class="hljs-keyword">if</span> (img1 != <span class="hljs-literal">null</span>) img1.color = defaultBGColor; <span class="hljs-comment">// 还原默认白色</span><br>        <span class="hljs-keyword">if</span> (img2 != <span class="hljs-literal">null</span>) img2.color = defaultBGColor;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<p>右键Image→UI→Input Field - TextMeshPro，调整位置，编写和挂载脚本监听点击事件和实时替换输入框中的文本（比较粗暴的方式）</p>
+<p>（下放我用的代码，我有两个输入框，另加了输入框高亮）</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">VRKeyboardManager</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> KeyboardController keyboardController;  <span class="hljs-comment">// 虚拟键盘控制器</span><br>    <span class="hljs-keyword">public</span> TMP_InputField tmpInputField1;  <span class="hljs-comment">// 第一个 TMP 输入框</span><br>    <span class="hljs-keyword">public</span> TMP_InputField tmpInputField2;  <span class="hljs-comment">// 第二个 TMP 输入框</span><br><br>    <span class="hljs-keyword">private</span> TMP_InputField activeTMPInputField = <span class="hljs-literal">null</span>;  <span class="hljs-comment">// 记录当前选中的 TMP 输入框</span><br>    <span class="hljs-keyword">private</span> Color defaultBGColor = Color.white;  <span class="hljs-comment">// 默认背景颜色</span><br>    <span class="hljs-keyword">private</span> Color selectedBGColor = <span class="hljs-keyword">new</span> Color(<span class="hljs-number">149f</span> / <span class="hljs-number">255f</span>, <span class="hljs-number">203f</span> / <span class="hljs-number">255f</span>, <span class="hljs-number">211f</span> / <span class="hljs-number">255f</span>, <span class="hljs-number">1f</span>); <span class="hljs-comment">// 选中时的淡蓝色（RGBA）</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>()</span><br>    &#123;<br>        <span class="hljs-comment">// 监听 TMP_InputField 的选择事件</span><br>        tmpInputField1.onSelect.AddListener(<span class="hljs-built_in">delegate</span> &#123; SetActiveTMPInputField(tmpInputField1); &#125;);<br>        tmpInputField2.onSelect.AddListener(<span class="hljs-built_in">delegate</span> &#123; SetActiveTMPInputField(tmpInputField2); &#125;);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (activeTMPInputField != <span class="hljs-literal">null</span>)<br>        &#123;<br>            activeTMPInputField.text = keyboardController.typedString;  <span class="hljs-comment">// 让 TMP 输入框内容实时更新</span><br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 当用户选择某个输入框时，激活它，并改变文本颜色</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetActiveTMPInputField</span>(<span class="hljs-params">TMP_InputField tmpInputField</span>)</span><br>    &#123;<br>        <span class="hljs-comment">// 重置所有输入框的颜色</span><br>        ResetInputFieldColors();<br><br>        <span class="hljs-comment">// 设为当前选中的输入框</span><br>        activeTMPInputField = tmpInputField;<br>        keyboardController.typedString = tmpInputField.text; <span class="hljs-comment">// 让键盘的 typedString 同步输入框的内容</span><br><br>        <span class="hljs-comment">// 修改当前选中输入框的背景颜色</span><br>        Image inputFieldImage = activeTMPInputField.GetComponent&lt;Image&gt;();<br>        <span class="hljs-keyword">if</span> (inputFieldImage != <span class="hljs-literal">null</span>)<br>        &#123;<br>            inputFieldImage.color = selectedBGColor;  <span class="hljs-comment">// 选中时背景变蓝</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 重置所有输入框的背景颜色</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ResetInputFieldColors</span>()</span><br>    &#123;<br>        Image img1 = tmpInputField1.GetComponent&lt;Image&gt;();<br>        Image img2 = tmpInputField2.GetComponent&lt;Image&gt;();<br><br>        <span class="hljs-keyword">if</span> (img1 != <span class="hljs-literal">null</span>) img1.color = defaultBGColor; <span class="hljs-comment">// 还原默认白色</span><br>        <span class="hljs-keyword">if</span> (img2 != <span class="hljs-literal">null</span>) img2.color = defaultBGColor;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ol>
+<h1 id="tracker以及绑定"><a href="#tracker以及绑定" class="headerlink" title="tracker以及绑定"></a>tracker以及绑定</h1><p>目前还没有连接实际设备，所以仅仅完成了键鼠模拟的部分，后续接入待定</p>
+<h2 id="1-创建模拟tracker输入"><a href="#1-创建模拟tracker输入" class="headerlink" title="1. 创建模拟tracker输入"></a>1. 创建模拟tracker输入</h2><p><strong>在 Unity 中创建一个 <code>SimulatedTracker</code> 物体，并用键盘和鼠标控制它的运动和旋转</strong>。</p>
+<ul>
+<li>在 Unity 场景中，新建一个空物体 <code>SimulatedTracker</code></li>
+<li>添加以下 <code>TrackerSimulator</code> 脚本，让它能用键盘&#x2F;鼠标移动。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TrackerSimulator</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> moveSpeed = <span class="hljs-number">1.5f</span>;  <span class="hljs-comment">// 移动速度</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">float</span> rotateSpeed = <span class="hljs-number">50f</span>; <span class="hljs-comment">// 旋转速度</span><br>    <span class="hljs-keyword">private</span> Vector3 rotation;       <span class="hljs-comment">// 存储当前旋转角度</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>()</span><br>    &#123;<br>        rotation = transform.rotation.eulerAngles;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span><br>    &#123;<br>        <span class="hljs-comment">// 用键盘控制位置（WASD 前后左右，Space 上升，LeftControl 下降）</span><br>        <span class="hljs-built_in">float</span> moveX = Input.GetAxis(<span class="hljs-string">&quot;Horizontal&quot;</span>) * moveSpeed * Time.deltaTime; <span class="hljs-comment">// A/D 左右移动</span><br>        <span class="hljs-built_in">float</span> moveZ = Input.GetAxis(<span class="hljs-string">&quot;Vertical&quot;</span>) * moveSpeed * Time.deltaTime;   <span class="hljs-comment">// W/S 前后移动</span><br>        <span class="hljs-built_in">float</span> moveY = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">if</span> (Input.GetKey(KeyCode.Space)) <span class="hljs-comment">// 空格键：上升</span><br>            moveY = moveSpeed * Time.deltaTime;<br>        <span class="hljs-keyword">if</span> (Input.GetKey(KeyCode.LeftControl)) <span class="hljs-comment">// 左Ctrl：下降</span><br>            moveY = -moveSpeed * Time.deltaTime;<br><br>        transform.position += <span class="hljs-keyword">new</span> Vector3(moveX, moveY, moveZ);<br><br>        <span class="hljs-comment">// 用鼠标右键拖动控制旋转（支持 X、Y 轴）</span><br>        <span class="hljs-keyword">if</span> (Input.GetMouseButton(<span class="hljs-number">1</span>))<br>        &#123;<br>            <span class="hljs-built_in">float</span> rotateY = Input.GetAxis(<span class="hljs-string">&quot;Mouse X&quot;</span>) * rotateSpeed * Time.deltaTime; <span class="hljs-comment">// 左右旋转</span><br>            <span class="hljs-built_in">float</span> rotateX = -Input.GetAxis(<span class="hljs-string">&quot;Mouse Y&quot;</span>) * rotateSpeed * Time.deltaTime; <span class="hljs-comment">// 上下旋转（负值是为了符合直觉）</span><br><br>            rotation.x += rotateX;<br>            rotation.y += rotateY;<br><br>            <span class="hljs-comment">// 应用旋转</span><br>            transform.rotation = Quaternion.Euler(rotation);<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-Tracker-映射到人物骨骼"><a href="#2-Tracker-映射到人物骨骼" class="headerlink" title="2. Tracker 映射到人物骨骼"></a><strong>2. Tracker 映射到人物骨骼</strong></h2><p>使用IK（逆向运动学）控制肢体的活动，让 <code>SimulatedTracker</code> 控制角色骨骼（如腰部、手、脚）。</p>
+<p>做这部分的时候记得关掉XR Simulator，不然键鼠输入会冲突</p>
+<ol>
+<li>使用Package Manager导入Animation Rigging包</li>
+<li>准备好绑好骨骼的人物，给模型的根物体加上组件Rig Builder，在根物体下创建空物体RigLayer，加上组件Rig，把这个RigLayer物体放入Rig Builder的列表中，在RigLayer下创建两个空物体Target和Constraint，Constraint加上组件Two Bone IK Constraint。下面以对左手臂加IK为例子说明设置：找到左上臂、左手肘、左手腕处的骨骼，对应放入Two Bone IK Constraint中的Root、Mid、Tip，Target设置为刚刚创建的空物体Target，修改Target的位置和左手腕相同</li>
+<li>新建一个tracker模拟器，加上前面写的TrackerSimulator脚本，再加上下面这个脚本（bone字段设置为空物体Target，simulatedTracker为自己），就可以使用键鼠控制手臂活动而不变形了</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TrackerToBone</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> Transform simulatedTracker; <span class="hljs-comment">// 虚拟 Tracker</span><br>    <span class="hljs-keyword">public</span> Transform bone;          <br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span><br>    &#123;<br>        <span class="hljs-comment">// 将 Tracker 位置与旋转直接应用到角色的相应骨骼</span><br>        <span class="hljs-keyword">if</span> (simulatedTracker != <span class="hljs-literal">null</span> &amp;&amp; bone != <span class="hljs-literal">null</span>)<br>        &#123;<br>            bone.position = simulatedTracker.position;<br>            bone.rotation = simulatedTracker.rotation;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>再加上手肘。创建一个新的tracker，加上TrackerSimulator和TrackerToBone脚本（bone字段和simulatedTracker字段均为自己），把这个tracker放入Two Bone IK Constraint的Hint字段，就可以通过移动tracker的位置控制手肘的朝向（手臂弯曲的方向）</li>
+<li>由于场景中同时有多个tracker，为了方便键鼠输入可以创建脚本进行不同tracker的切换</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> TMPro;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TrackerController</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">private</span> List&lt;GameObject&gt; trackers;<br>    <span class="hljs-keyword">public</span> GameObject tracker1;<span class="hljs-comment">//控制左手腕</span><br>    <span class="hljs-keyword">public</span> GameObject tracker2;<span class="hljs-comment">//控制左手肘</span><br><br>    <span class="hljs-keyword">public</span> TextMeshProUGUI text;<br>    <span class="hljs-comment">// Start is called before the first frame update</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>()</span><br>    &#123;<br>        trackers = <span class="hljs-keyword">new</span> List&lt;GameObject&gt;<br>        &#123;<br>            tracker1,<br>            tracker2<br>        &#125;;<br>    &#125;<br><br>    <span class="hljs-comment">// Update is called once per frame</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span><br>    &#123;<br>        chanegTracker();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">chanegTracker</span>()</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (Input.GetKeyDown(<span class="hljs-string">&quot;q&quot;</span>))<br>        &#123;<br>            text.text = <span class="hljs-string">&quot;左手腕&quot;</span>;<br>            forbidden();<br>            tracker1.GetComponent&lt;TrackerSimulator&gt;().enabled = <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (Input.GetKeyDown(<span class="hljs-string">&quot;e&quot;</span>))<br>        &#123;<br>            text.text = <span class="hljs-string">&quot;左手肘&quot;</span>;<br>            forbidden();<br>            tracker2.GetComponent&lt;TrackerSimulator&gt;().enabled = <span class="hljs-literal">true</span>;<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">forbidden</span>()</span><br>    &#123;<br>        <span class="hljs-keyword">foreach</span> (GameObject obj <span class="hljs-keyword">in</span> trackers)<br>        &#123;<br>            obj.GetComponent&lt;TrackerSimulator&gt;().enabled = <span class="hljs-literal">false</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>以下是后续计划，没设备实现不了</p>
+<h2 id="第三阶段：适配-HTC-Vive-Tracker"><a href="#第三阶段：适配-HTC-Vive-Tracker" class="headerlink" title="第三阶段：适配 HTC Vive Tracker"></a><strong>第三阶段：适配 HTC Vive Tracker</strong></h2><p>目标：<strong>当设备到位时，把 <code>SimulatedTracker</code> 替换为 HTC Vive Tracker 数据</strong>。</p>
+<p><strong>1. 获取 Vive Tracker 的位置数</strong></p>
+<p>如果使用 <strong>SteamVR</strong>，可以用 <code>SteamVR_Behaviour_Pose</code> 组件读取 Tracker 数据：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> Valve.VR;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ViveTrackerController</span> : <span class="hljs-title">MonoBehaviour</span><br>&#123;<br>    <span class="hljs-keyword">public</span> SteamVR_Behaviour_Pose trackerPose; <span class="hljs-comment">// SteamVR 组件</span><br>    <span class="hljs-keyword">public</span> Transform targetObject;             <span class="hljs-comment">// 需要映射的对象（骨骼或物体）</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span><br>    &#123;<br>        targetObject.position = trackerPose.transform.position;<br>        targetObject.rotation = trackerPose.transform.rotation;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>✅ 适配方式：</strong></p>
+<ol>
+<li><strong>Tracker 绑定到人物骨骼</strong>：<code>targetObject</code> 设置为 <code>hipBone</code> &#x2F; <code>handBone</code> &#x2F; <code>footBone</code>。</li>
+<li><strong>Tracker 绑定到物体</strong>：<code>targetObject</code> 设置为物体（如武器）。</li>
+<li>这样，只需**替换 <code>SimulatedTracker</code> 为 <code>trackerPose.transform</code>**，代码逻辑不变，避免重复开发！</li>
+</ol>
+<hr>
+<h2 id="完整方案流程"><a href="#完整方案流程" class="headerlink" title="完整方案流程"></a><strong>完整方案流程</strong></h2><table>
+<thead>
+<tr>
+<th><strong>阶段</strong></th>
+<th><strong>任务</strong></th>
+<th><strong>方法</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>第一阶段</strong></td>
+<td>模拟 Tracker</td>
+<td>创建 <code>SimulatedTracker</code>，用键盘&#x2F;鼠标控制它</td>
+</tr>
+<tr>
+<td><strong>第二阶段</strong></td>
+<td>绑定人物骨骼</td>
+<td>让 <code>SimulatedTracker</code> 控制 <code>hipBone</code> 或 <code>handBone</code>，并可选 IK 处理</td>
+</tr>
+<tr>
+<td><strong>第三阶段</strong></td>
+<td>适配 HTC Vive Tracker</td>
+<td>替换 <code>SimulatedTracker</code> 为 <code>SteamVR_Behaviour_Pose</code>，无须改动核心代码</td>
+</tr>
+</tbody></table>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ul>
 <li>没有使用unity自带的版本控制工具有可能会报错，移除项目中的Version Control包即可</li>
 <li>unity中的ui文字用的TMP，导入外部文字（.ttf格式等）的时候需要转换成支持的格式，右键字体文件→Create→TextMeshPro→Font Asset进行创建</li>
 <li>如果是中文字体，记得点击生成的文字文件，勾选这个，否则会出现显示文字为方框的问题</li>
 </ul>
-<p><img src="attachment:d4a4cbbe-2cbd-41f9-9020-0284e6283a4a:image.png" srcset="/my_blog/img/loading.gif" lazyload alt="image.png"></p>
+<p>![image4.png](&#x2F;img&#x2F;UnityVR开发&#x2F;image 4.png)</p>
 <ul>
 <li>中文字体包可以到你电脑上的C:\Windows\Fonts中找你要的</li>
 </ul>
@@ -386,11 +444,32 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/my_blog/categories/UnityVR/" class="category-chain-item">UnityVR</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/my_blog/tags/Unity/" class="print-no-link">#Unity</a>
+        <a href="/my_blog/tags/UnityVR/" class="print-no-link">#UnityVR</a>
       
     </div>
   
@@ -402,7 +481,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>UnityVR开发</div>
+      <div>UnityVR开发教程（也许）</div>
       <div>https://twilight0702.github.io/my_blog/2025/02/13/UnityVR开发/</div>
     </div>
     <div class="license-meta">
