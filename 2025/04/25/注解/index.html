@@ -1,0 +1,902 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_blog/img/fluid.png">
+  <link rel="icon" href="/my_blog/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Twilight">
+  <meta name="keywords" content="我的,你好">
+  
+    <meta name="description" content="什么是注解注解（Annotation是 Java 提供的一种元数据机制，用来给代码添加额外的信息。它本质上是一些标记（标注），不会直接影响程序运行逻辑，但可以被：  编译器用来做检查或生成代码 工具或框架用来做配置和控制逻辑 运行时通过[[反射机制|反射机制]]读取注解，实现一些自动化功能  你可以把注解理解成代码上的“说明标签”，告诉编译器或框架：“这里的代码需要特别对待”。 注解的作用Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java注解">
+<meta property="og:url" content="https://twilight0702.github.io/my_blog/2025/04/25/%E6%B3%A8%E8%A7%A3/index.html">
+<meta property="og:site_name" content="猫窝">
+<meta property="og:description" content="什么是注解注解（Annotation是 Java 提供的一种元数据机制，用来给代码添加额外的信息。它本质上是一些标记（标注），不会直接影响程序运行逻辑，但可以被：  编译器用来做检查或生成代码 工具或框架用来做配置和控制逻辑 运行时通过[[反射机制|反射机制]]读取注解，实现一些自动化功能  你可以把注解理解成代码上的“说明标签”，告诉编译器或框架：“这里的代码需要特别对待”。 注解的作用Java">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-25T12:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-19T18:09:37.954Z">
+<meta property="article:author" content="Twilight">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Java注解 - 猫窝</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/my_blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/my_blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/my_blog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"twilight0702.github.io","root":"/my_blog/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/my_blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/my_blog/js/utils.js" ></script>
+  <script  src="/my_blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/my_blog/">
+      <strong>猫窝</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_blog/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/my_blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java注解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-25 20:00" pubdate>
+          2025年4月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Java注解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="什么是注解"><a href="#什么是注解" class="headerlink" title="什么是注解"></a>什么是注解</h1><p><strong>注解（Annotation</strong>是 Java 提供的一种<strong>元数据机制</strong>，用来给代码添加额外的信息。它本质上是一些<strong>标记（标注）</strong>，不会直接影响程序运行逻辑，但可以被：</p>
+<ul>
+<li><strong>编译器</strong>用来做检查或生成代码</li>
+<li><strong>工具或框架</strong>用来做配置和控制逻辑</li>
+<li><strong>运行时</strong>通过[[反射机制|反射机制]]读取注解，实现一些自动化功能</li>
+</ul>
+<p>你可以把注解理解成代码上的“说明标签”，告诉编译器或框架：“这里的代码需要特别对待”。</p>
+<h1 id="注解的作用"><a href="#注解的作用" class="headerlink" title="注解的作用"></a>注解的作用</h1><p>Java 注解的主要作用可以总结为以下 <strong>四大类功能</strong>：</p>
+<h3 id="1-✅-编译检查（提升代码规范）"><a href="#1-✅-编译检查（提升代码规范）" class="headerlink" title="1. ✅ 编译检查（提升代码规范）"></a>1. ✅ 编译检查（提升代码规范）</h3><p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123; &#125;  <span class="hljs-comment">// 如果方法签名错了，编译器会报错</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>@Override</code> 告诉编译器“我在重写父类的方法”，如果你写错方法名，编译器立刻报错。</li>
+<li><code>@Deprecated</code> 可以标记不推荐使用的代码，提醒开发者。</li>
+</ul>
+<hr>
+<h3 id="2-✅-运行时读取（通过反射获得信息）"><a href="#2-✅-运行时读取（通过反射获得信息）" class="headerlink" title="2. ✅ 运行时读取（通过反射获得信息）"></a>2. ✅ 运行时读取（通过反射获得信息）</h3><p>比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Author(name = &quot;Alice&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>你可以在程序运行时通过反射获取 <code>@Author</code> 注解的信息，进行权限校验、记录作者等用途。</p>
+<hr>
+<h3 id="3-✅-替代-XML-配置（用于框架自动化）"><a href="#3-✅-替代-XML-配置（用于框架自动化）" class="headerlink" title="3. ✅ 替代 XML 配置（用于框架自动化）"></a>3. ✅ 替代 XML 配置（用于框架自动化）</h3><p>在 Spring 框架中，很多注解替代了传统 XML 配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123; &#125;<br><br><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> UserRepository repository;<br></code></pre></td></tr></table></figure>
+
+<p>框架可以通过注解自动扫描、自动注入、自动初始化对象，大大减少了手动配置工作。</p>
+<hr>
+<h3 id="4-✅-自动代码生成（APT、Lombok等）"><a href="#4-✅-自动代码生成（APT、Lombok等）" class="headerlink" title="4. ✅ 自动代码生成（APT、Lombok等）"></a>4. ✅ 自动代码生成（APT、Lombok等）</h3><p>一些工具（如 Lombok）利用注解实现代码自动生成，减少重复劳动：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span>  <span class="hljs-comment">// 自动生成 getter/setter/toString/hashCode 等</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>还有注解处理器（APT），可以在编译时生成类、方法等代码。</p>
+<p>注解的应用场景总结：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>编译检查</td>
+<td>如 <code>@Override</code>, <code>@Deprecated</code></td>
+</tr>
+<tr>
+<td>自动注入</td>
+<td>Spring 的 <code>@Autowired</code></td>
+</tr>
+<tr>
+<td>配置驱动开发</td>
+<td>如 <code>@Component</code>, <code>@RequestMapping</code></td>
+</tr>
+<tr>
+<td>AOP切面标记</td>
+<td><code>@Transactional</code>, <code>@Log</code></td>
+</tr>
+<tr>
+<td>测试框架标记</td>
+<td><code>@Test</code>, <code>@BeforeEach</code></td>
+</tr>
+<tr>
+<td>自动代码生成</td>
+<td>Lombok、MapStruct等</td>
+</tr>
+</tbody></table>
+<h1 id="注解的基本语法"><a href="#注解的基本语法" class="headerlink" title="注解的基本语法"></a>注解的基本语法</h1><p>注解使用 <code>@</code> 符号开头，位于类、方法、字段等前面：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span> <br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;     <br>	<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Example&quot;</span>; <br>	&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="常见注解"><a href="#常见注解" class="headerlink" title="常见注解"></a>常见注解</h1><h2 id="Java-内置注解（最常用）"><a href="#Java-内置注解（最常用）" class="headerlink" title="Java 内置注解（最常用）"></a>Java 内置注解（最常用）</h2><h3 id="1-Override"><a href="#1-Override" class="headerlink" title="1. @Override"></a>1. <code>@Override</code></h3><ul>
+<li>用于重写父类方法。</li>
+<li>编译器检查是否正确重写。</li>
+</ul>
+<h3 id="2-Deprecated"><a href="#2-Deprecated" class="headerlink" title="2. @Deprecated"></a>2. <code>@Deprecated</code></h3><ul>
+<li>表示该方法或类已过时，调用时编译器会发出警告。</li>
+</ul>
+<h3 id="3-SuppressWarnings"><a href="#3-SuppressWarnings" class="headerlink" title="3. @SuppressWarnings"></a>3. <code>@SuppressWarnings</code></h3><ul>
+<li>用于抑制编译器警告。</li>
+<li>常见参数：<code>&quot;unchecked&quot;</code>, <code>&quot;deprecation&quot;</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="hljs-type">List</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-SafeVarargs"><a href="#4-SafeVarargs" class="headerlink" title="4. @SafeVarargs"></a>4. <code>@SafeVarargs</code></h3><ul>
+<li>用于声明方法中的泛型参数是安全的（Java 7+）。</li>
+</ul>
+<h3 id="5-FunctionalInterface"><a href="#5-FunctionalInterface" class="headerlink" title="5. @FunctionalInterface"></a>5. <code>@FunctionalInterface</code></h3><ul>
+<li>声明一个接口是函数式接口（只能有一个抽象方法）。</li>
+</ul>
+<h2 id="元注解（用于定义注解的注解）"><a href="#元注解（用于定义注解的注解）" class="headerlink" title="元注解（用于定义注解的注解）"></a>元注解（用于定义注解的注解）</h2><p>Java 提供了 5 个元注解，用于描述自定义注解的行为：</p>
+<table>
+<thead>
+<tr>
+<th>注解名</th>
+<th>作用描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@Target</code></td>
+<td>指定注解作用的位置（类、方法等）</td>
+</tr>
+<tr>
+<td><code>@Retention</code></td>
+<td>指定注解保留级别（源码&#x2F;类文件&#x2F;运行时）</td>
+</tr>
+<tr>
+<td><code>@Documented</code></td>
+<td>是否将注解包含在 Javadoc 中</td>
+</tr>
+<tr>
+<td><code>@Inherited</code></td>
+<td>子类是否继承父类的注解</td>
+</tr>
+<tr>
+<td><code>@Repeatable</code></td>
+<td>是否支持重复注解（Java 8+）</td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target(ElementType.METHOD)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyAnnotation &#123;<br>    String <span class="hljs-title function_">value</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target(ElementType.TYPE)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Author &#123;<br>    String <span class="hljs-title function_">name</span><span class="hljs-params">()</span>;<br>    String <span class="hljs-title function_">date</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Author(name = &quot;Alice&quot;, date = &quot;2025-04-21&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="可以做什么"><a href="#可以做什么" class="headerlink" title="可以做什么"></a>可以做什么</h3><table>
+<thead>
+<tr>
+<th>用途</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自动注入 &#x2F; 依赖注入</td>
+<td><code>@Autowired</code>、<code>@Inject</code></td>
+</tr>
+<tr>
+<td>权限控制</td>
+<td><code>@RequiresPermission</code></td>
+</tr>
+<tr>
+<td>参数校验</td>
+<td><code>@NotNull</code>、<code>@Size</code></td>
+</tr>
+<tr>
+<td>ORM 映射</td>
+<td><code>@Table</code>、<code>@Column</code></td>
+</tr>
+<tr>
+<td>接口映射（Web框架）</td>
+<td><code>@RequestMapping</code></td>
+</tr>
+<tr>
+<td>代码生成（注解处理器）</td>
+<td><code>@AutoService</code>, <code>@Builder</code></td>
+</tr>
+<tr>
+<td>日志埋点 &#x2F; AOP</td>
+<td><code>@LogTime</code></td>
+</tr>
+<tr>
+<td>自定义测试框架</td>
+<td><code>@Test</code>, <code>@Benchmark</code></td>
+</tr>
+</tbody></table>
+<h3 id="详细实现（反射-JDK动态代理）"><a href="#详细实现（反射-JDK动态代理）" class="headerlink" title="详细实现（反射 + JDK动态代理）"></a>详细实现（反射 + JDK动态代理）</h3><p>这里举例：写一个用于类的注解，如果类加上了这个注解，就输出类的运行时长</p>
+<p>注解部分：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target(ElementType.METHOD)</span>  <br><span class="hljs-meta">@Retention(java.lang.annotation.RetentionPolicy.RUNTIME)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> LogExecutionTime &#123;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用注解：（注意这里需要是接口和实现，才能做到JDK代理）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ServiceInterface</span> &#123;  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doSomething</span><span class="hljs-params">()</span>;  <br>  <br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">work</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException;  <br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DemoService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ServiceInterface</span>&#123;  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-meta">@LogExecutionTime</span>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doSomething</span><span class="hljs-params">()</span> &#123;  <br>        System.out.println(<span class="hljs-string">&quot;doSomething&quot;</span>);  <br>    &#125;  <br>  <br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-meta">@LogExecutionTime</span>  <br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">work</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;  <br>        sleep(<span class="hljs-number">1000</span>);  <br>        System.out.println(<span class="hljs-string">&quot;work over&quot;</span>);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代理类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LogProxy</span> &#123;  <br>    <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; T <span class="hljs-title function_">createProxy</span><span class="hljs-params">(T target)</span> &#123;  <br>        <span class="hljs-keyword">return</span> (T) Proxy.newProxyInstance(  <br>                target.getClass().getClassLoader(),  <br>                target.getClass().getInterfaces(),  <br>                <span class="hljs-keyword">new</span> <span class="hljs-title class_">InvocationHandler</span>() &#123;  <br>                    <span class="hljs-meta">@Override</span>  <br>                    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable &#123;  <br>                        <span class="hljs-type">Method</span> <span class="hljs-variable">realMethod</span> <span class="hljs-operator">=</span> target.getClass().getMethod(method.getName(), method.getParameterTypes());  <br>  <br>                        <span class="hljs-keyword">if</span> (realMethod.isAnnotationPresent(LogExecutionTime.class)) &#123;  <br>                            <span class="hljs-type">long</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> System.currentTimeMillis();  <br>                            System.out.println(<span class="hljs-string">&quot;开始执行方法: &quot;</span> + method.getName());  <br>                            <span class="hljs-type">Object</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> method.invoke(target, args);  <br>                            <span class="hljs-type">long</span> <span class="hljs-variable">end</span> <span class="hljs-operator">=</span> System.currentTimeMillis();  <br>                            System.out.println(<span class="hljs-string">&quot;方法执行结果: &quot;</span> + result);  <br>                            System.out.println(<span class="hljs-string">&quot;方法执行耗时: &quot;</span> + (end - start) + <span class="hljs-string">&quot; ms&quot;</span>);  <br>                            <span class="hljs-keyword">return</span> result;  <br>                        &#125; <span class="hljs-keyword">else</span> &#123;  <br>                            <span class="hljs-keyword">return</span> method.invoke(target, args);  <br>                        &#125;  <br>                    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>调用方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test9</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;  <br>    <span class="hljs-type">DemoService</span> <span class="hljs-variable">service</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DemoService</span>();  <br>    <span class="hljs-type">ServiceInterface</span> <span class="hljs-variable">proxy</span> <span class="hljs-operator">=</span> LogProxy.createProxy(service);  <span class="hljs-comment">//注意这里要返回到接口，不能是实现类，而且一定要用代理类包一层</span><br>  <br>    proxy.doSomething();  <br>    proxy.work();  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="常见第三方注解（框架中常见）"><a href="#常见第三方注解（框架中常见）" class="headerlink" title="常见第三方注解（框架中常见）"></a>常见第三方注解（框架中常见）</h2><h3 id="Spring-框架"><a href="#Spring-框架" class="headerlink" title="Spring 框架"></a>Spring 框架</h3><table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@Component</code></td>
+<td>声明一个 Bean 组件</td>
+</tr>
+<tr>
+<td><code>@Autowired</code></td>
+<td>自动注入依赖</td>
+</tr>
+<tr>
+<td><code>@Service</code></td>
+<td>声明业务逻辑层组件</td>
+</tr>
+<tr>
+<td><code>@Repository</code></td>
+<td>声明 DAO 组件</td>
+</tr>
+<tr>
+<td><code>@Controller</code></td>
+<td>声明控制器层组件（Web）</td>
+</tr>
+<tr>
+<td><code>@RequestMapping</code></td>
+<td>映射 URL 路径</td>
+</tr>
+<tr>
+<td><code>@RestController</code></td>
+<td>等价于 <code>@Controller + @ResponseBody</code></td>
+</tr>
+</tbody></table>
+<h3 id="JUnit-测试"><a href="#JUnit-测试" class="headerlink" title="JUnit 测试"></a>JUnit 测试</h3><table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@Test</code></td>
+<td>表示一个测试方法</td>
+</tr>
+<tr>
+<td><code>@BeforeEach</code></td>
+<td>每个测试前执行</td>
+</tr>
+<tr>
+<td><code>@AfterEach</code></td>
+<td>每个测试后执行</td>
+</tr>
+<tr>
+<td><code>@BeforeAll</code></td>
+<td>所有测试前执行</td>
+</tr>
+<tr>
+<td><code>@AfterAll</code></td>
+<td>所有测试后执行</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="注解的运行时解析（反射）"><a href="#注解的运行时解析（反射）" class="headerlink" title="注解的运行时解析（反射）"></a>注解的运行时解析（反射）</h1><p>可以使用 Java 反射 API 获取注解信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">Class&lt;?&gt; clazz = MyClass.class;<br><span class="hljs-keyword">if</span> (clazz.isAnnotationPresent(Author.class)) &#123;<br>    <span class="hljs-type">Author</span> <span class="hljs-variable">author</span> <span class="hljs-operator">=</span> clazz.getAnnotation(Author.class);<br>    System.out.println(author.name());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>[[Java运行时|运行时是什么]]<br>[[反射机制|反射是什么]]</p>
+<hr>
+<h1 id="注解处理器（APT，Annotation-Processing-Tool）"><a href="#注解处理器（APT，Annotation-Processing-Tool）" class="headerlink" title="注解处理器（APT，Annotation Processing Tool）"></a>注解处理器（APT，Annotation Processing Tool）</h1><p>用于在编译期扫描、处理注解，生成代码（如 Lombok、ButterKnife、Dagger 等库的实现方式）。</p>
+<p>使用方式：</p>
+<ul>
+<li>实现 <code>javax.annotation.processing.AbstractProcessor</code></li>
+<li>使用 <code>@SupportedAnnotationTypes</code>、<code>@SupportedSourceVersion</code></li>
+<li>编译器会在编译时调用处理器自动处理标注的注解</li>
+</ul>
+<hr>
+<p>[[2 Java基础面试题#注解|小林coding注解部分]]</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/my_blog/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/my_blog/tags/Java/" class="print-no-link">#Java</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java注解</div>
+      <div>https://twilight0702.github.io/my_blog/2025/04/25/注解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Twilight</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_blog/2025/04/25/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/" title="反射机制">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">反射机制</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_blog/2025/04/20/%E8%B5%84%E6%BA%90%E7%9B%AE%E5%BD%95/" title="Java资源目录">
+                        <span class="hidden-mobile">Java资源目录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/my_blog/js/events.js" ></script>
+<script  src="/my_blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/my_blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/my_blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/my_blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

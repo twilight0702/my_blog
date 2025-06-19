@@ -19,23 +19,22 @@
   <meta name="author" content="Twilight">
   <meta name="keywords" content="我的,你好">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="什么是索引为什么需要索引：  没有索引时，数据库要查询某条记录，只能从头到尾一条条“全表扫描”（性能慢）。  有了索引，数据库就能根据索引结构快速定位到你要的数据，大大提升查询效率。索引 &#x3D; 快速查找的目录   MySQL 中最常用的索引底层结构是 B+树（平衡树）：  数据库会按照你设定的“索引列”，建立一棵排序好的树形结构。  优点：  查找时像二分查找一样迅速。 加速查询、排序、分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://twilight0702.github.io/my_blog/2024/12/28/hello-world/index.html">
+<meta property="og:title" content="MySQL索引">
+<meta property="og:url" content="https://twilight0702.github.io/my_blog/2025/05/20/MySQL%E7%B4%A2%E5%BC%95/index.html">
 <meta property="og:site_name" content="猫窝">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="什么是索引为什么需要索引：  没有索引时，数据库要查询某条记录，只能从头到尾一条条“全表扫描”（性能慢）。  有了索引，数据库就能根据索引结构快速定位到你要的数据，大大提升查询效率。索引 &#x3D; 快速查找的目录   MySQL 中最常用的索引底层结构是 B+树（平衡树）：  数据库会按照你设定的“索引列”，建立一棵排序好的树形结构。  优点：  查找时像二分查找一样迅速。 加速查询、排序、分">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-12-28T02:35:52.515Z">
-<meta property="article:modified_time" content="2025-02-13T15:31:02.391Z">
+<meta property="article:published_time" content="2025-05-20T12:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-19T17:57:01.361Z">
 <meta property="article:author" content="Twilight">
-<meta property="article:tag" content="我的">
-<meta property="article:tag" content="你好">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - 猫窝</title>
+  <title>MySQL索引 - 猫窝</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="MySQL索引"></span>
           
         </div>
 
@@ -212,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-28 10:35" pubdate>
-          2024年12月28日 上午
+        <time datetime="2025-05-20 20:00" pubdate>
+          2025年5月20日 晚上
         </time>
       </span>
     
@@ -224,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          558 字
+          1.5k 字
         
       </span>
     
@@ -235,7 +234,7 @@
         
         
         
-          5 分钟
+          13 分钟
         
       </span>
     
@@ -272,54 +271,200 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">MySQL索引</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
+                <h1 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h1><p>为什么需要索引：</p>
+<ul>
+<li><p>没有索引时，数据库要查询某条记录，只能从头到尾一条条“全表扫描”（性能慢）。</p>
+</li>
+<li><p>有了索引，数据库就能根据索引结构快速定位到你要的数据，<strong>大大提升查询效率</strong>。索引 &#x3D; 快速查找的目录</p>
+</li>
+</ul>
+<p>MySQL 中最常用的索引底层结构是 <strong>B+树（平衡树）</strong>：</p>
+<ul>
+<li>数据库会按照你设定的“索引列”，建立一棵排序好的树形结构。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>查找时像二分查找一样迅速。</li>
+<li>加速查询、排序、分组和聚合、连接，提高WHERE条件性能</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>额外占用存储空间</strong>。</li>
+<li>建得太多或不合理，会拖慢写入性能。</li>
+</ul>
+<p>建议设置为索引的字段应该具备：</p>
+<ol>
+<li><strong>高选择性</strong></li>
+<li><strong>经常参与查询（WHERE &#x2F; JOIN &#x2F; GROUP BY）</strong></li>
+<li><strong>字段类型不宜过长</strong></li>
+<li><strong>更新频率不太高</strong></li>
+</ol>
+<p>删除索引 和 删除约束 区别：</p>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>删除内容</th>
+<th>本质</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>删除约束</strong></td>
+<td>删除规则（比如不能重复、必须存在等）</td>
+<td><strong>约束逻辑</strong></td>
+<td>删除唯一约束、主键、外键等</td>
+</tr>
+<tr>
+<td><strong>删除索引</strong></td>
+<td>删除加速查询的数据结构</td>
+<td><strong>性能优化工具</strong></td>
+<td>删除某列或组合列的索引结构</td>
+</tr>
+</tbody></table>
+<p>^d81b03</p>
+<p>有些约束创建的时候会自动创建索引，删除的时候自动删除（唯一约束、主键），有的不会（外键）</p>
+<h1 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h1><p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE product (<br>  id INT PRIMARY KEY,<br>  name VARCHAR(100),<br>  -- 其他字段<br>);<br><br>-- 创建普通索引<br>CREATE INDEX idx_name ON product(name);<br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<p>在 Hexo 文章中插入图片有多种方法，您可以根据需求选择适合的方式：</p>
-<p><strong>1. 使用统一的图片文件夹（绝对路径引用）</strong></p>
-<p>将所有图片放在 <code>source/images</code> 文件夹中，然后在文章中通过绝对路径引用。例如，若有图片 <code>source/images/image.jpg</code>，在文章中使用以下 Markdown 语法插入：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">描述</span>](<span class="hljs-link">/images/image.jpg</span>)<br></code></pre></td></tr></table></figure>
-
-<p>这种方法简单直接，适用于图片数量较少的情况。 citeturn0search0</p>
-<p><strong>2. 为每篇文章创建独立的图片文件夹（相对路径引用）</strong></p>
-<p>在 Hexo 的 <code>_config.yml</code> 配置文件中，将 <code>post_asset_folder</code> 设置为 <code>true</code>：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">post_asset_folder:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
-
-<p>然后，新建文章时，Hexo 会自动在 <code>source/_posts</code> 目录下创建一个与文章同名的文件夹。将图片放入该文件夹，在文章中使用相对路径引用。例如，若有文章 <code>post_name.md</code>，对应的图片放在 <code>source/_posts/post_name/image.jpg</code>，在文章中插入图片的语法为：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">描述</span>](<span class="hljs-link">image.jpg</span>)<br></code></pre></td></tr></table></figure>
-
-<p>这种方法有助于将每篇文章的资源进行独立管理，适用于图片较多的情况。 citeturn0search0</p>
-<p><strong>3. 使用标签插件语法</strong></p>
-<p>如果希望图片在文章和首页中都能正常显示，可以使用 Hexo 的标签插件语法。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% asset<span class="hljs-emphasis">_img image.jpg 描述 %&#125;</span><br></code></pre></td></tr></table></figure>
-
-<p>其中，<code>image.jpg</code> 是图片文件名，<code>描述</code> 是对图片的描述信息。 citeturn0search0</p>
-<p><strong>4. 引用网络图片（图床）</strong></p>
-<p>将图片上传到图床或 CDN，然后在文章中通过图片的 URL 引用。例如：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">描述</span>](<span class="hljs-link">https://example.com/image.jpg</span>)<br></code></pre></td></tr></table></figure>
-
-<p>这种方法可以减轻本地存储压力，但需确保外部链接的稳定性。 citeturn0search3</p>
-<p><strong>5. 使用 HTML 标签</strong></p>
-<p>直接在文章中使用 HTML 的 <code>&lt;img&gt;</code> 标签，可以更灵活地控制图片的显示效果，例如设置大小、添加样式等：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/images/image.jpg&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;50%&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;50%&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;描述&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>这种方法适用于对图片展示有特殊要求的情况。 citeturn0search0</p>
-<p>根据您的具体需求，选择上述方法即可在 Hexo 文章中插入图片。 </p>
+<p>查询语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select id from product where id &gt; 1  and name like &#x27;i%&#x27;;<br></code></pre></td></tr></table></figure>
+<p>执行过程中使用了普通索引（name）</p>
+<h2 id="InnoDB的索引结构"><a href="#InnoDB的索引结构" class="headerlink" title="InnoDB的索引结构"></a>InnoDB的索引结构</h2><p>InnoDB 有两种索引：</p>
+<table>
+<thead>
+<tr>
+<th>索引类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>聚簇索引（主键索引）</strong></td>
+<td>主键索引的叶子节点就是<strong>整行数据</strong></td>
+</tr>
+<tr>
+<td><strong>二级索引（普通索引）</strong></td>
+<td>叶子节点只保存<strong>索引列 + 主键值</strong>，不包含整行数据</td>
+</tr>
+</tbody></table>
+<h2 id="什么是覆盖索引"><a href="#什么是覆盖索引" class="headerlink" title="什么是覆盖索引"></a>什么是覆盖索引</h2><p>如果查询中使用到的字段，<strong>全部都能从某个索引中得到，不需要回表到原表</strong>，就叫“覆盖索引”。</p>
+<blockquote>
+<p>在你这个查询中，普通索引 <code>idx_name</code> 虽然只索引了 <code>name</code>，但是叶子节点会**额外存储主键值 <code>id</code>**，这是 InnoDB 的特点！</p>
+</blockquote>
+<p>所以虽然你查的是 <code>id</code>，但实际上：</p>
+<ul>
+<li>从 <code>name</code> 的 B+ 树叶子节点中，就能直接获取对应的主键 <code>id</code></li>
+<li>不需要再回到主键索引（即“回表”）去拿数据</li>
+</ul>
+<p>如果SELECT的字段不是id，就需要回表</p>
+<h2 id="为什么这个例子中有性能差异？"><a href="#为什么这个例子中有性能差异？" class="headerlink" title="为什么这个例子中有性能差异？"></a>为什么这个例子中有性能差异？</h2><p>在这个例子中二者都不需要回表，但是使用普通索引速度更快？</p>
+<h3 id="方式一：走普通索引-name"><a href="#方式一：走普通索引-name" class="headerlink" title="方式一：走普通索引 name"></a>方式一：走普通索引 <code>name</code></h3><p>MySQL 会用 <code>idx_name</code> 普通索引（name, id） 来查：</p>
+<ul>
+<li>利用 <code>name LIKE &#39;i%&#39;</code> 进行快速范围查找</li>
+<li>查到的叶子节点中包含主键 <code>id</code></li>
+<li>查询结果正好是 <code>id</code>，可以直接返回（覆盖索引 ✅）</li>
+<li>不用回主键索引找整行数据</li>
+</ul>
+<p><strong>效率高！因为只访问一棵 B+ 树（<code>idx_name</code>）</strong></p>
+<h3 id="方式二：走主键索引-id"><a href="#方式二：走主键索引-id" class="headerlink" title="方式二：走主键索引 id"></a>方式二：走主键索引 <code>id</code></h3><p>虽然主键 <code>id</code> 的 B+ 树可以快速定位符合 <code>id &gt; 1</code> 的数据，<strong>但不能用索引加速 <code>name like &#39;i%&#39;</code> 这个条件！</strong></p>
+<p>所以执行过程是：</p>
+<ul>
+<li>先根据 <code>id &gt; 1</code> 走主键索引找到一大堆数据</li>
+<li>然后要<strong>一条条记录取出 <code>name</code> 字段</strong>，再判断 <code>name LIKE &#39;i%&#39;</code> 是否成立（要比对字符串）</li>
+<li>相当于对大量数据做了“过滤判断” → 成本高！</li>
+</ul>
+<p>📌 重点：这时候 <code>name</code> 条件就变成“<strong>不能用索引加速的条件</strong>”，只能<strong>逐行判断</strong></p>
+<hr>
+<h3 id="对比总结："><a href="#对比总结：" class="headerlink" title="对比总结："></a>对比总结：</h3><blockquote>
+<p><strong>虽然主键索引本身就包含整行数据，不需要回表，但它</strong>不能用来加速 <code>name like &#39;i%&#39;</code> 这个条件<strong>，反而导致多读数据、多做判断，整体成本就高了。</strong></p>
+</blockquote>
+<p>而普通索引 <code>name</code> 虽然不是主键，但它能提前筛掉大部分无关数据，<strong>配合覆盖索引机制，查得更快！</strong></p>
+<h2 id="不同存储引擎的差异"><a href="#不同存储引擎的差异" class="headerlink" title="不同存储引擎的差异"></a>不同存储引擎的差异</h2><h3 id="InnoDB-vs-MyISAM：覆盖索引的区别"><a href="#InnoDB-vs-MyISAM：覆盖索引的区别" class="headerlink" title="InnoDB vs MyISAM：覆盖索引的区别"></a>InnoDB vs MyISAM：覆盖索引的区别</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>InnoDB</th>
+<th>MyISAM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否支持聚簇索引</td>
+<td>✅ 是</td>
+<td>❌ 否</td>
+</tr>
+<tr>
+<td>覆盖索引优势</td>
+<td>✅ 非常明显（能避免回表）</td>
+<td>❌ 覆盖索引没明显优势</td>
+</tr>
+<tr>
+<td>普通索引叶子节点内容</td>
+<td><strong>索引字段 + 主键值</strong></td>
+<td><strong>索引字段 + 数据文件的指针（偏移量）</strong></td>
+</tr>
+<tr>
+<td>回表成本</td>
+<td>高（需再查主键B+树）</td>
+<td>低（直接根据偏移量读取）</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="InnoDB-中的覆盖索引为什么高效？"><a href="#InnoDB-中的覆盖索引为什么高效？" class="headerlink" title="InnoDB 中的覆盖索引为什么高效？"></a>InnoDB 中的覆盖索引为什么高效？</h3><p>InnoDB 的普通索引叶子节点 <strong>不存整行数据</strong>，但它会额外存 <strong>主键值</strong>。</p>
+<blockquote>
+<p>✅ 如果你查询的字段正好都在这个普通索引里 → 就是<strong>覆盖索引</strong>，<strong>不需要回主键索引的 B+ 树</strong>。</p>
+</blockquote>
+<p>⚠️ 否则就要“<strong>回表</strong>”，根据主键值再去主键索引找整行。</p>
+<p>因此，<strong>避免回表 → 节省一次B+树查询 → 提高效率</strong></p>
+<hr>
+<h3 id="MyISAM-的表现就不同了"><a href="#MyISAM-的表现就不同了" class="headerlink" title="MyISAM 的表现就不同了"></a>MyISAM 的表现就不同了</h3><p>MyISAM 没有聚簇索引，所有索引（包括主键）都是独立的 B+ 树，<strong>叶子节点只保存数据行的物理地址</strong>（类似偏移量）。</p>
+<p>所以：</p>
+<ul>
+<li>即使是普通索引，<strong>也得根据地址再读一遍磁盘取整行数据</strong></li>
+<li>但是！这个“回表”只是<strong>直接读磁盘地址，不是查第二棵B+树</strong>，开销其实小一些</li>
+</ul>
+<p>📌 所以在 MyISAM 中：</p>
+<blockquote>
+<p>“覆盖索引”的优势并不明显，甚至数据库也不太在意你是否用覆盖索引</p>
+</blockquote>
+<hr>
+<h3 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h3><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>InnoDB</th>
+<th>MyISAM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>覆盖索引能显著提升性能吗？</td>
+<td>✅ 是，避免回表成本高</td>
+<td>❌ 效果不明显</td>
+</tr>
+<tr>
+<td>普通索引查不到的字段要“回表”吗？</td>
+<td>✅ 要，查主键B+树</td>
+<td>✅ 要，读磁盘地址</td>
+</tr>
+<tr>
+<td>优化器更倾向于选覆盖索引？</td>
+<td>✅ 是</td>
+<td>❌ 不一定</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="补充建议："><a href="#补充建议：" class="headerlink" title="补充建议："></a>补充建议：</h3><ul>
+<li><p>如果你用的是 InnoDB（现在几乎默认），<strong>善用覆盖索引会让查询快很多</strong>，比如：</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> id <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Alice&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>  给 <code>name</code> 建索引，就能变成覆盖索引（因为 id 会跟着存）。</p>
+</li>
+<li><p>如果你真的用的是 MyISAM，<strong>就没必要为了覆盖索引去调整索引结构</strong>。</p>
+</li>
+</ul>
 
                 
               </div>
@@ -328,6 +473,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/my_blog/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/my_blog/tags/MySQL/" class="print-no-link">#MySQL</a>
+      
+    </div>
   
 </div>
 
@@ -337,8 +510,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>https://twilight0702.github.io/my_blog/2024/12/28/hello-world/</div>
+      <div>MySQL索引</div>
+      <div>https://twilight0702.github.io/my_blog/2025/05/20/MySQL索引/</div>
     </div>
     <div class="license-meta">
       
@@ -350,7 +523,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月28日</div>
+          <div>2025年5月20日</div>
         </div>
       
       
@@ -382,15 +555,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/my_blog/2025/01/12/IO/" title="IO">
+                      <a href="/my_blog/2025/05/25/Java%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B/" title="Java编译运行过程">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">IO</span>
+                        <span class="hidden-mobile">Java编译运行过程</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/my_blog/2025/05/11/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" title="类加载器">
+                        <span class="hidden-mobile">类加载器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
