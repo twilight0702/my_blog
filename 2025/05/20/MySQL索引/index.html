@@ -27,7 +27,7 @@
 <meta property="og:description" content="什么是索引为什么需要索引：  没有索引时，数据库要查询某条记录，只能从头到尾一条条“全表扫描”（性能慢）。  有了索引，数据库就能根据索引结构快速定位到你要的数据，大大提升查询效率。索引 &#x3D; 快速查找的目录   MySQL 中最常用的索引底层结构是 B+树（平衡树）：  数据库会按照你设定的“索引列”，建立一棵排序好的树形结构。  优点：  查找时像二分查找一样迅速。 加速查询、排序、分">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-20T12:00:00.000Z">
-<meta property="article:modified_time" content="2025-06-19T17:57:01.361Z">
+<meta property="article:modified_time" content="2025-06-19T18:23:09.579Z">
 <meta property="article:author" content="Twilight">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary_large_image">
@@ -367,7 +367,7 @@
 <ul>
 <li>利用 <code>name LIKE &#39;i%&#39;</code> 进行快速范围查找</li>
 <li>查到的叶子节点中包含主键 <code>id</code></li>
-<li>查询结果正好是 <code>id</code>，可以直接返回（覆盖索引 ✅）</li>
+<li>查询结果正好是 <code>id</code>，可以直接返回（覆盖索引）</li>
 <li>不用回主键索引找整行数据</li>
 </ul>
 <p><strong>效率高！因为只访问一棵 B+ 树（<code>idx_name</code>）</strong></p>
@@ -378,7 +378,7 @@
 <li>然后要<strong>一条条记录取出 <code>name</code> 字段</strong>，再判断 <code>name LIKE &#39;i%&#39;</code> 是否成立（要比对字符串）</li>
 <li>相当于对大量数据做了“过滤判断” → 成本高！</li>
 </ul>
-<p>📌 重点：这时候 <code>name</code> 条件就变成“<strong>不能用索引加速的条件</strong>”，只能<strong>逐行判断</strong></p>
+<p>重点：这时候 <code>name</code> 条件就变成“<strong>不能用索引加速的条件</strong>”，只能<strong>逐行判断</strong></p>
 <hr>
 <h3 id="对比总结："><a href="#对比总结：" class="headerlink" title="对比总结："></a>对比总结：</h3><blockquote>
 <p><strong>虽然主键索引本身就包含整行数据，不需要回表，但它</strong>不能用来加速 <code>name like &#39;i%&#39;</code> 这个条件<strong>，反而导致多读数据、多做判断，整体成本就高了。</strong></p>
@@ -416,9 +416,9 @@
 <hr>
 <h3 id="InnoDB-中的覆盖索引为什么高效？"><a href="#InnoDB-中的覆盖索引为什么高效？" class="headerlink" title="InnoDB 中的覆盖索引为什么高效？"></a>InnoDB 中的覆盖索引为什么高效？</h3><p>InnoDB 的普通索引叶子节点 <strong>不存整行数据</strong>，但它会额外存 <strong>主键值</strong>。</p>
 <blockquote>
-<p>✅ 如果你查询的字段正好都在这个普通索引里 → 就是<strong>覆盖索引</strong>，<strong>不需要回主键索引的 B+ 树</strong>。</p>
+<p>如果你查询的字段正好都在这个普通索引里 → 就是<strong>覆盖索引</strong>，<strong>不需要回主键索引的 B+ 树</strong>。</p>
 </blockquote>
-<p>⚠️ 否则就要“<strong>回表</strong>”，根据主键值再去主键索引找整行。</p>
+<p>否则就要“<strong>回表</strong>”，根据主键值再去主键索引找整行。</p>
 <p>因此，<strong>避免回表 → 节省一次B+树查询 → 提高效率</strong></p>
 <hr>
 <h3 id="MyISAM-的表现就不同了"><a href="#MyISAM-的表现就不同了" class="headerlink" title="MyISAM 的表现就不同了"></a>MyISAM 的表现就不同了</h3><p>MyISAM 没有聚簇索引，所有索引（包括主键）都是独立的 B+ 树，<strong>叶子节点只保存数据行的物理地址</strong>（类似偏移量）。</p>
@@ -427,7 +427,7 @@
 <li>即使是普通索引，<strong>也得根据地址再读一遍磁盘取整行数据</strong></li>
 <li>但是！这个“回表”只是<strong>直接读磁盘地址，不是查第二棵B+树</strong>，开销其实小一些</li>
 </ul>
-<p>📌 所以在 MyISAM 中：</p>
+<p>所以在 MyISAM 中：</p>
 <blockquote>
 <p>“覆盖索引”的优势并不明显，甚至数据库也不太在意你是否用覆盖索引</p>
 </blockquote>
@@ -442,18 +442,18 @@
 </thead>
 <tbody><tr>
 <td>覆盖索引能显著提升性能吗？</td>
-<td>✅ 是，避免回表成本高</td>
-<td>❌ 效果不明显</td>
+<td>是，避免回表成本高</td>
+<td>效果不明显</td>
 </tr>
 <tr>
 <td>普通索引查不到的字段要“回表”吗？</td>
-<td>✅ 要，查主键B+树</td>
-<td>✅ 要，读磁盘地址</td>
+<td>要，查主键B+树</td>
+<td>要，读磁盘地址</td>
 </tr>
 <tr>
 <td>优化器更倾向于选覆盖索引？</td>
-<td>✅ 是</td>
-<td>❌ 不一定</td>
+<td>是</td>
+<td>不一定</td>
 </tr>
 </tbody></table>
 <hr>
